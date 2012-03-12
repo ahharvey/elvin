@@ -1,0 +1,15 @@
+<% title "Order Details"%>
+
+<p>
+  <b>Date:</b>
+  <%= @order.date %>
+</p>
+
+<p>
+  <b>Fulfilled:</b>
+  <%= @order.fulfilled %>
+</p>
+
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

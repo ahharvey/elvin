@@ -1,0 +1,36 @@
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;}
+ul.ui-autocomplete  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;}
+ul.ui-autocomplete  li a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+ul.ui-autocomplete  li a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
+    }
+
+
+/*FLASH NOTICES*/
+.fieldWithErrors {display: inline;}
+.error_messages {width: 400px;border: 2px solid #b94a48;padding: 0px;padding-bottom: 12px;margin-bottom: 20px;background-color:#f2dede;font-size: 12px;}
+.error_messages h2 {text-align: left;font-weight: bold;padding: 2px 10px;font-size: 12px;margin: 0;background-color: #b94a48;color: #fff;}
+.error_messages p {margin: 8px 10px;}
+.error_messages ul {margin:0;padding:0 0 0 30px;}
+.error_messages li {}
+.field_with_errors {margin-top: 10px;padding: 2px;}
+.field_with_errors label {color: #b94a48;}
+.field_with_errors input {border: #b94a48;background:#f2dede;color: #b94a48;font-weight:bold;}
+#error_explanation {width: 400px;border: 2px solid red;padding: 7px;padding-bottom: 12px;margin-bottom: 20px;background-color: #f0f0f0;}
+#error_explanation h2 {text-align: left;font-weight: bold;padding: 5px 5px 5px 15px;font-size: 12px;margin: -7px;background-color: #c00;color: #fff;}
+#error_explanation p {color: #333;margin-bottom: 0;padding: 5px;}
+#error_explanation ul li {font-size: 12px;list-style: square;}

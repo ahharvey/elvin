@@ -1,0 +1,36 @@
+<%= form_for(@order, :html => {:class=>"form-horizontal"}) do |f| %>
+	<%= f.error_messages %>
+	<fieldset>
+		<legend>Order Details</legend>
+		<div class="control-group">
+			<%= f.label :date %>
+			<div class="controls">
+				<%= f.date_select :date %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :fulfilled %>
+			<div class="controls">
+			    <%= f.check_box :fulfilled %>
+			</div>
+		</div>
+	</fieldset>
+	
+	<div class="nested-form" >
+		
+		<div class="center">
+			<%= link_to_add_association "Add a Product", f, :ordered_products, :class=>"add-ordered-product add-nested-child btn" %>
+		</div>
+		
+		<ol id="ordered_products_container" class="nested-child-container">
+			<%= f.fields_for :ordered_products  do |ordered_product| %>	
+				<%= render 'ordered_product_fields', :f=>ordered_product %>
+			<% end %>
+		</ol>
+		
+	</div>
+	
+	<div class="form-actions">
+		<%= f.submit "Save changes", :class=>"btn-primary" %>
+  	</div>
+<% end %>

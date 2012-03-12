@@ -1,4 +1,18 @@
 Elvin::Application.routes.draw do
+  resources :colors
+
+  devise_for :users
+
+  resources :ordered_products
+
+  resources :orders
+
+  resources :products
+  
+  root :to => "users#index"
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

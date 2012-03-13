@@ -1,0 +1,48 @@
+<% @counter = 0 %>
+<% @ordered_products = @order.ordered_products %>
+
+<div id="dialog-form" title="Save new product">
+  <%= form_tag("/orders/#{@order.id}/save_products") do -%>
+    <% @ordered_products.each do |op, i| %>
+      <%product = op.product%>
+      <% if product.quantity.blank? or product.price.blank? %>
+        <legend>
+          Product Name : <%= product.name %>
+          <div class="product_<%= op.product.id %>">
+            <div class="field">
+              <%= label_tag 'Quantity' %>
+              <%= number_field_tag "product[#{product.id}][quantity]", product.quantity %>
+            </div>
+            <div class="field">
+              <%= label_tag 'Price' %>
+              <%= number_field_tag "product[#{product.id}][price]", product.price %>
+            </div>
+          </div>
+        </legend>
+      <% else %>
+        <% @counter = @counter + 1 %>
+      <% end %>
+
+    <% end %>
+    <div><%= submit_tag 'Save' %></div>
+  <% end -%>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    $( "#dialog-form" ).dialog({
+      autoOpen: <%= !@ordered_products.count.eql?(@counter) ? 'true' : 'false' %>,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        Cancel: function() {
+          $( "#dialog-form" ).dialog('close');
+        }
+      },
+      close: function() {
+        $( "#dialog-form" ).dialog('close');
+      }
+    });
+  });
+</script>

@@ -5,7 +5,9 @@ Elvin::Application.routes.draw do
 
   resources :ordered_products
 
-  resources :orders
+  resources :orders do
+    post 'save_products', :on => :member
+  end
 
   resources :products
   

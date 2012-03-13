@@ -72,6 +72,12 @@ class OrdersController < ApplicationController
     end
   end
 
+  def save_products
+    Product.save_new_product(params[:product])
+
+    redirect_to(order_path(id: params[:id]))
+  end
+
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy

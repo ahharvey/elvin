@@ -1,16 +1,17 @@
 <li class="nested-fields ordered-product">
-	<fieldset class="form-inline alert-info well">
-		<%= f.text_field :product_name, :class=>"product-name", :data => {:autocomplete_source => Product.order(:name).map(&:name) } %>
-		<%= f.number_field :quantity, :class=>"span1" %>	
-		<%= link_to_remove_association f, :class=>"btn" do %>
-			<i class='icon-remove'></i>
-	    	Remove
-		<% end %>
-	</fieldset>
-	<table id="colors_container" class="nested-child-container">
-		<%= f.fields_for :colors  do |color| %>	
-			<%= render 'color_fields', :f=>color %>
-		<% end %>
-	</table>
-	<%= link_to_add_association "Add a Color", f, :colors, :class=>"add-color add-nested-child btn" %>
+  <fieldset class="form-inline alert-info well">
+    <%= f.text_field :product_name, :class=>"product-name", :data => {:autocomplete_source => Product.order(:name).map(&:name) } %>
+    <%= f.number_field :quantity, :class=>"span1" %>
+    <%= link_to_remove_association f, :class=>"btn" do %>
+      <i class='icon-remove'></i>
+      Remove
+    <% end %>
+  </fieldset>
+  <table id="colors_container" class="nested-child-container">
+    <%= f.fields_for :colors  do |color| %>
+      <%= render 'color_fields', :f=>color %>
+    <% end %>
+  </table>
+  <%= link_to_add_association "Add a Color", f, :colors, :class=>"add-color add-nested-child btn" %>
 </li>
+

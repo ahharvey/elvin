@@ -8,8 +8,8 @@ $(function() { // enable autocomplete for ordered_products
 
 $(function() { // set insert location for new ordered_product fields in order nested form 
     $("a.add-ordered-product").
-      data("association-insertion-position", 'after').
-      data("association-insertion-node", '#ordered_products_container li.ordered-product:last');
+      data("association-insertion-position", 'append').
+      data("association-insertion-node", '#ordered_products_container');
 });
 
 $(function() { // set location of new color fields in order nested form 

@@ -21,6 +21,11 @@ class OrderedProduct < ActiveRecord::Base
       obj_product
     end
   end
+
+  def initialize(*attributes)
+    super
+    2.times { colors.build }
+  end
   
   private
   def decrement_product_stock

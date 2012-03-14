@@ -27,7 +27,6 @@ class OrdersController < ApplicationController
     @order = Order.new
     2.times do
       ordered_product = @order.ordered_products.build
-      2.times { ordered_product.colors.build }
     end
     respond_to do |format|
       format.html # new.html.erb

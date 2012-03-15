@@ -15,7 +15,7 @@ class OrderedProduct < ActiveRecord::Base
   def product_name=(name)
     obj_product = Product.find_or_initialize_by_name(name) if name.present?
     self.product = if obj_product.new_record?
-      obj_product.save(validate: false)
+      obj_product.save(:validate => false)
       obj_product
     else
       obj_product

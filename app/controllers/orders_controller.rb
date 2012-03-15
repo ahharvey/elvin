@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
   def save_products
     Product.save_new_product(params[:product])
 
-    redirect_to(order_path(id: params[:id]))
+    redirect_to(order_path(:id => params[:id]))
   end
 
   # DELETE /orders/1

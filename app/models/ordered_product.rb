@@ -39,14 +39,4 @@ class OrderedProduct < ActiveRecord::Base
       self.product.increment!(:stock, self.quantity )
     end
   end
-    
-  def recalculate_product_stock
-    if self.order.fullfilled?
-      if self.order.fullfilled_changed?
-        self.product.increment!(:stock, self.quantity)
-      else
-        self.quantity_changed? ? self.product.increment!(:stock, self.quantity - self.quantity_was) : ""
-      end
-    end
-  end
 end

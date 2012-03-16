@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
     obj = find(products.keys)
     products.each do |product|
       obj_product = obj.find{|o|o.id.eql?(product.first.to_i)}
-      obj_product.update_attributes({quantity: product.last["quantity"], price: product.last["price"]})
+      obj_product.update_attributes({:quantity => product.last["quantity"], :price => product.last["price"]})
     end
   end
 end

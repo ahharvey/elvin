@@ -39,9 +39,11 @@ $(document).ready(function() {
             insertionNode.after(contentNode);
         } else if (insertionPosition == "append"){
             insertionNode.append(contentNode);
+        } else if (insertionPosition == "before"){
+            insertionNode.before(contentNode);
         }
         else {
-            insertionNode.before(contentNode);
+            insertionNode.append(contentNode);
         }
 
         if (insertionCallback){

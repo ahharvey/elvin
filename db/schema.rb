@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309142348) do
+ActiveRecord::Schema.define(:version => 20120320092600) do
 
   create_table "colors", :force => true do |t|
     t.string   "name"
@@ -20,6 +20,63 @@ ActiveRecord::Schema.define(:version => 20120309142348) do
   end
 
   add_index "colors", ["ordered_product_id"], :name => "index_colors_on_ordered_product_id"
+
+  create_table "groupa_users", :force => true do |t|
+    t.integer  "groupa_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groupa_users", ["groupa_id"], :name => "index_groupa_users_on_groupa_id"
+  add_index "groupa_users", ["user_id"], :name => "index_groupa_users_on_user_id"
+
+  create_table "groupas", :force => true do |t|
+    t.string   "name"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groupas", ["order_id"], :name => "index_groupas_on_order_id"
+
+  create_table "groupb_users", :force => true do |t|
+    t.integer  "groupb_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groupb_users", ["groupb_id"], :name => "index_groupb_users_on_groupb_id"
+  add_index "groupb_users", ["user_id"], :name => "index_groupb_users_on_user_id"
+
+  create_table "groupbs", :force => true do |t|
+    t.string   "name"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groupbs", ["order_id"], :name => "index_groupbs_on_order_id"
+
+  create_table "groupc_users", :force => true do |t|
+    t.integer  "groupc_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groupc_users", ["groupc_id"], :name => "index_groupc_users_on_groupc_id"
+  add_index "groupc_users", ["user_id"], :name => "index_groupc_users_on_user_id"
+
+  create_table "groupcs", :force => true do |t|
+    t.string   "name"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groupcs", ["order_id"], :name => "index_groupcs_on_order_id"
 
   create_table "ordered_products", :force => true do |t|
     t.integer  "product_id"

@@ -27,6 +27,9 @@ class OrdersController < ApplicationController
     @order = Order.new
     2.times do
       ordered_product = @order.ordered_products.build
+      groupa = @order.groupas.build
+      groupb = @order.groupbs.build
+      groupc = @order.groupcs.build
     end
     respond_to do |format|
       format.html # new.html.erb

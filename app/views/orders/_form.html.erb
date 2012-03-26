@@ -3,6 +3,12 @@
 	<fieldset>
 		<legend>Order Details</legend>
 		<div class="control-group">
+			<%= f.label :user_name %>
+			<div class="controls">
+				<%= f.text_field :user_name, :class=>"user-name", :data => {:autocomplete_source => User.order(:name).map(&:name) } %>
+			</div>
+		</div>
+		<div class="control-group">
 			<%= f.label :date %>
 			<div class="controls">
 				<%= f.date_select :date %>
@@ -16,20 +22,78 @@
 		</div>
 	</fieldset>
 	
-	<div class="nested-form" >
+	<div class="tabbable">
+	   <ul class="nav nav-tabs">
+	      	<li class="active"><a href="#1" data-toggle="tab">Products</a></li>
+	      	<li><a href="#2" data-toggle="tab">Group A</a></li>
+	      	<li><a href="#3" data-toggle="tab">Group B</a></li>
+			<li><a href="#4" data-toggle="tab">Group C</a></li>
+	   </ul>
+	   <div class="tab-content">
+			
+			<div class="tab-pane active" id="1">
+				<div class="nested-form" >
+					<div class="center">
+						<%= link_to_add_association "Add a Product", f, :ordered_products, :class=>"add-ordered-product add-nested-child btn" %>
+					</div>
 		
-		<div class="center">
-			<%= link_to_add_association "Add a Product", f, :ordered_products, :class=>"add-ordered-product add-nested-child btn" %>
+					<ol id="ordered_products_container" class="nested-child-container">
+						<%= f.fields_for :ordered_products  do |ordered_product| %>	
+							<%= render 'ordered_product_fields', :f=>ordered_product %>
+						<% end %>
+					</ol>
+				</div>
+			</div>
+			
+			<div class="tab-pane" id="2">
+				<div class="nested-form" >
+				
+					<div class="center">
+						<%= link_to_add_association "Add a GroupA", f, :groupas, :class=>"add-groupa add-nested-child btn" %>
+					</div>
+
+					<ol id="groupas_container" class="nested-child-container">
+						<%= f.fields_for :groupas  do |groupa| %>	
+							<%= render 'groupa_fields', :f=>groupa %>
+						<% end %>
+					</ol>
+				
+				</div>
+			</div>
+			
+			<div class="tab-pane" id="3">
+				<div class="nested-form" >
+					
+					<div class="center">
+						<%= link_to_add_association "Add a GroupB", f, :groupbs, :class=>"add-groupb add-nested-child btn" %>
+					</div>
+
+					<ol id="groupbs_container" class="nested-child-container">
+						<%= f.fields_for :groupbs  do |groupb| %>	
+							<%= render 'groupb_fields', :f=>groupb %>
+						<% end %>
+					</ol>
+					
+				</div>
+			</div>
+			
+			<div class="tab-pane" id="4">
+				<div class="nested-form" >
+					
+					<div class="center">
+						<%= link_to_add_association "Add a GroupC", f, :groupcs, :class=>"add-groupc add-nested-child btn" %>
+					</div>
+
+					<ol id="groupcs_container" class="nested-child-container">
+						<%= f.fields_for :groupcs  do |groupc| %>	
+							<%= render 'groupc_fields', :f=>groupc %>
+						<% end %>
+					</ol>
+					
+				</div>
+			</div>
+			
 		</div>
-		
-		<ol id="ordered_products_container" class="nested-child-container">
-			<%= f.fields_for :ordered_products  do |ordered_product| %>	
-				<%= render 'ordered_product_fields', :f=>ordered_product %>
-			<% end %>
-		</ol>
-		
-	</div>
-	
 	<div class="form-actions">
 		<%= f.submit "Save changes", :class=>"btn-primary" %>
   	</div>

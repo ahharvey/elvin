@@ -1,0 +1,25 @@
+<h1>Listing groupb_users</h1>
+
+<table>
+  <tr>
+    <th>Groupb</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @groupb_users.each do |groupb_user| %>
+  <tr>
+    <td><%= groupb_user.groupb %></td>
+    <td><%= groupb_user.user %></td>
+    <td><%= link_to 'Show', groupb_user %></td>
+    <td><%= link_to 'Edit', edit_groupb_user_path(groupb_user) %></td>
+    <td><%= link_to 'Destroy', groupb_user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Groupb user', new_groupb_user_path %>

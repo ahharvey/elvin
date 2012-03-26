@@ -1,0 +1,15 @@
+<li class="nested-fields groupc">
+  <fieldset class="form-inline alert-info well">
+    <%= f.text_field :name %>
+    <%= link_to_remove_association f, :class=>"btn" do %>
+      <i class='icon-remove'></i>
+      Remove
+    <% end %>
+  </fieldset>
+  <table id="groupc_users_container" class="nested-child-container">
+    <%= f.fields_for :groupc_users  do |groupc_user| %>
+      <%= render 'groupc_user_fields', :f=>groupc_user %>
+    <% end %>
+  </table>
+  <%= link_to_add_association "Add a groupc User", f, :groupc_users, :class=>"add-groupc-user add-nested-child btn" %>
+</li>

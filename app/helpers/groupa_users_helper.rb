@@ -1,0 +1,2 @@
+module GroupaUsersHelper
+end

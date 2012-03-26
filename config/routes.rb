@@ -1,4 +1,16 @@
 Elvin::Application.routes.draw do
+  resources :groupc_users
+
+  resources :groupcs
+
+  resources :groupb_users
+
+  resources :groupbs
+
+  resources :groupa_users
+
+  resources :groupas
+
   resources :colors
 
   devise_for :users

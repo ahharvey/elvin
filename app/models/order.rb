@@ -22,6 +22,20 @@ class Order < ActiveRecord::Base
 
   before_save :recalculate_product_stock
 
+  def or_user_name
+      user.try(:name)
+  end
+
+  def or_user_name=(name)
+      obj_user = User.find_or_initialize_by_name(name) if name.present?
+      self.user = if obj_user.new_record?
+        obj_user.save(:validate => false)
+        obj_user
+      else
+        obj_user
+      end
+  end
+  
   private
   
   def recalculate_product_stock
@@ -38,18 +52,6 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def user_name
-      user.try(:name)
-  end
-
-  def user_name=(name)
-      obj_user = User.find_or_initialize_by_name(name) if name.present?
-      self.user = if obj_user.new_record?
-        obj_user.save(validate:false)
-        obj_user
-      else
-        obj_user
-      end
-  end
+  
   
 end

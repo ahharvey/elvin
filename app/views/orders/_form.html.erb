@@ -3,9 +3,9 @@
 	<fieldset>
 		<legend>Order Details</legend>
 		<div class="control-group">
-			<%= f.label :user_name %>
+			<%= f.label :or_user_name %>
 			<div class="controls">
-				<%= f.text_field :user_name, :class=>"user-name", :data => {:autocomplete_source => User.order(:name).map(&:name) } %>
+				<%= f.text_field :or_user_name, :class=>"user-name", :data => {:autocomplete_source => User.order(:name).map(&:name) } %>
 			</div>
 		</div>
 		<div class="control-group">

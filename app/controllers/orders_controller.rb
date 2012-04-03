@@ -14,6 +14,23 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @users = []
+
+    @order.groupas.each do |ga|
+      ga.groupa_users.each do |u|
+        @users << u.user if u.user
+      end
+    end
+    @order.groupbs.each do |gb|
+      gb.groupb_users.each do |u|
+        @users << u.user if u.user
+      end
+    end
+    @order.groupcs.each do |gc|
+      gc.groupc_users.each do |u|
+        @users << u.user if u.user
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb

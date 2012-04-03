@@ -92,7 +92,19 @@ class OrdersController < ApplicationController
   end
 
   def save_products
-    Product.save_new_product(params[:product])
+    if params[:user]
+      users = User.find(params[:user].keys)
+      params[:user].each do |us|
+        if us.last["password"] or us.last["email"]
+          user = users.find {|user|user.id.eql?(us.first.to_i)}
+          user.password = user.password_confirmation = us.last["password"] if us.last["password"]
+          user.email = us.last["email"] if us.last["email"]
+          user.save
+        end
+      end
+    end
+
+    Product.save_new_product(params[:product]) if params[:product]
 
     redirect_to(order_path(:id => params[:id]))
   end

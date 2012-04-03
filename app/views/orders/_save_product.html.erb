@@ -1,11 +1,13 @@
 <% @counter = 0 %>
+<% @count_user = 0 %>
 <% @ordered_products = @order.ordered_products %>
 
 <div id="dialog-form" class="modal hide fade">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">×</a>
-    <h3>Save new product</h3>
+    <h3>Save Form -- Please complete that information</h3>
   </div>
+
   <div class="modal-body">
     <%= form_tag("/orders/#{@order.id}/save_products") do -%>
       <% @ordered_products.each do |op, i| %>
@@ -27,8 +29,28 @@
         <% else %>
           <% @counter = @counter + 1 %>
         <% end %>
-
       <% end %>
+
+      <% @users.uniq.each do |user| %>
+        <% if user.encrypted_password.blank? or user.email.include?("test.com") %>
+          <legend>
+            User : <%= user.name %>
+            <div class="user_<%= user.id %>">
+              <div class="field">
+                <%= label_tag 'Email' %>
+                <%= email_field_tag "user[#{user.id}][email]", '' %>
+              </div>
+              <div class="field">
+                <%= label_tag 'Password' %>
+                <%= password_field_tag "user[#{user.id}][password]", '' %>
+              </div>
+            </div>
+          </legend>
+        <% else %>
+          <% @count_user = @count_user + 1 %>
+        <% end %>
+      <% end %>
+
       <div class="modal-footer">
         <a href="#" class="btn" data-dismiss="modal">Close</a>
         <%= submit_tag 'Save', :class => 'btn btn-primary' %>
@@ -37,7 +59,7 @@
   </div>
 </div>
 
-<% if !@ordered_products.count.eql?(@counter) %>
+<% if !@ordered_products.count.eql?(@counter) or !@users.count.eql?(@count_user) %>
   <script type="text/javascript">
     $(function() {
       $('#dialog-form').modal();

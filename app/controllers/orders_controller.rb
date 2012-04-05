@@ -31,7 +31,8 @@ class OrdersController < ApplicationController
         @users << u.user if u.user
       end
     end
-
+    @users.uniq!
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @order }

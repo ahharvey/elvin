@@ -31,23 +31,25 @@
         <% end %>
       <% end %>
 
-      <% @users.uniq.each do |user| %>
-        <% if user.encrypted_password.blank? or user.email.include?("test.com") %>
-          <legend>
-            User : <%= user.name %>
-            <div class="user_<%= user.id %>">
-              <div class="field">
-                <%= label_tag 'Email' %>
-                <%= email_field_tag "user[#{user.id}][email]", '' %>
+      <% if @users %>
+        <% @users.each do |user| %>
+          <% if user.encrypted_password.blank? or user.email.include?("test.com") %>
+            <legend>
+              User : <%= user.name %>
+              <div class="user_<%= user.id %>">
+                <div class="field">
+                  <%= label_tag 'Email' %>
+                  <%= email_field_tag "user[#{user.id}][email]", '' %>
+                </div>
+                <div class="field">
+                  <%= label_tag 'Password' %>
+                  <%= password_field_tag "user[#{user.id}][password]", '' %>
+                </div>
               </div>
-              <div class="field">
-                <%= label_tag 'Password' %>
-                <%= password_field_tag "user[#{user.id}][password]", '' %>
-              </div>
-            </div>
-          </legend>
-        <% else %>
-          <% @count_user = @count_user + 1 %>
+            </legend>
+          <% else %>
+            <% @count_user = @count_user + 1 %>
+          <% end %>
         <% end %>
       <% end %>
 
@@ -59,7 +61,9 @@
   </div>
 </div>
 
-<% if !@ordered_products.count.eql?(@counter) or !@users.count.eql?(@count_user) %>
+<% count = @users.nil? ? 0 : @users.count %>
+
+<% if !@ordered_products.count.eql?(@counter) or !count.eql?(@count_user) %>
   <script type="text/javascript">
     $(function() {
       $('#dialog-form').modal();

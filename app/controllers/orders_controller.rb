@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
         @users << u.user if u.user
       end
     end
+    @users << @order.user
     @users.uniq!
     
     respond_to do |format|
